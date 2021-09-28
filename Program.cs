@@ -7,7 +7,6 @@ namespace Choose_Your_Class
         public static void Main(string[] args)
         {
             TaskList taskList = new TaskList();
-            Task testTask = new Task("Rake the leaves", "092821", 5, 1);
             bool useList = true;
 
 			Console.WriteLine("Building Maintenance List Manager");
@@ -18,12 +17,13 @@ namespace Choose_Your_Class
 
 			while (useList)
 			{
+				Console.Clear();
 				Console.WriteLine("OPTIONS:");
 				Console.WriteLine(divider);
 				Console.WriteLine("1. Create task");
 				Console.WriteLine("2. View status of all tasks");
 				Console.WriteLine("3. Mark task complete");
-				Console.WriteLine("4. Change task difficulty(1-5)");
+				Console.WriteLine("4. Change task importance(1-5)");
 				Console.WriteLine("5. Change task urgency(1-5)");
 				Console.WriteLine("6. Remove task");
 				Console.WriteLine("q. Quit");
@@ -43,7 +43,8 @@ namespace Choose_Your_Class
 						break;	
 					case '3':
 						// mark task complete
-						testTask.MarkComplete(taskList.ChooseTask());
+						task = taskList.ChooseTask();
+						task.MarkComplete(task);
 						break;	
 					case '4':
 						// change task importance
@@ -89,8 +90,9 @@ namespace Choose_Your_Class
 			Console.WriteLine("Enter estimated urgency (1-5):");
 			int urgency = Convert.ToInt32(Console.ReadLine());
 
-			Task myTask = new Task(description, dueDate, importance, urgency);
-
+			Task myTask = new Task(description, dueDate);
+			myTask.Importance = importance;
+			myTask.Urgency = urgency;
 			taskList.AddTask(myTask);
 		}
 	}

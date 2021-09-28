@@ -1,79 +1,60 @@
 ﻿namespace Choose_Your_Class
 {
-	class Task : TaskList
+	public class Task
 	{
-		private int urgency;
-		private int importance;
 
 		public string Description { get; set; }
 		public string DueDate { get; set; }
-		public int Importance
-		{
-			get
-			{
-				return importance;
-			}
-
-			set
-			{
-				if (value > 5)
-				{
-					importance = 5;
-				}
-				else if (importance < 0)
-				{
-					importance = 0;
-				}
-			}
-		}
-		public int Urgency
-		{
-			get
-			{
-				return urgency;
-			}
-
-			set
-			{
-				if (value > 5)
-				{
-					urgency = 5;
-				}
-				else if (urgency < 0)
-				{
-					urgency = 0;
-				}
-			}
-		}
+		public int Importance { get; set; }
+		public int Urgency { get; set; }
 		public bool IsComplete { get; set; }
 
-		public Task(string description, string dueDate, int importance, int urgency)
+		public Task()
+		{
+
+		}
+
+		public Task(string description, string dueDate)
 		{
 			this.Description = description;
 			this.DueDate = dueDate;
-			this.Importance = importance;
-			this.Urgency = urgency;
 			this.IsComplete = false;
 		}
 
-		public void MarkComplete(Task task)
+		public void MarkComplete(Task chosenTask)
 		{
-			task.IsComplete = true;
+			chosenTask.IsComplete = true;
 		}
 
 		public void ChangeUrgency(int value)
 		{
-			if (value > 0 && value < 6)
+			if (value > 5)
+			{
+				this.Urgency = 5;
+			} else if (value < 1)
+			{
+				this.Urgency = 1;
+			}  else
 			{
 				this.Urgency = value;
 			}
+				
 		}
 		public void ChangeImportance(int value)
 		{
-			if (value > 0 && value < 6)
+			if (value > 5)
+			{
+				this.Importance = 5;
+			}
+			else if (value < 1)
+			{
+				this.Importance = 1;
+			}
+			else
 			{
 				this.Importance = value;
 			}
 		}
+
 	}
 }

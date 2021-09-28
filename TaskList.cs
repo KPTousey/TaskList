@@ -11,7 +11,7 @@ namespace Choose_Your_Class
 	public class TaskList
 	{
 		public List<Task> MyList = new List<Task>();
-
+		string divider = new string('-', 30);
 		public void AddTask(Task newTask)
 		{
 			// adds task to the task list
@@ -39,7 +39,17 @@ namespace Choose_Your_Class
 
 		public void getStatusAll()
 		{
-			Console.WriteLine("Here's the status");
+
+			Console.WriteLine("Task Status List");
+			Console.WriteLine(divider);
+			Console.WriteLine("Due Date\tImportance\tUrgency\t\tComplete?");
+
+			for (int i = 0; i < MyList.Count; i++)
+			{
+				Console.WriteLine($"Descr: {MyList[i].Description}");
+				Console.WriteLine($"{MyList[i].DueDate}\t\t{MyList[i].Importance}\t\t{MyList[i].Urgency}\t\t{MyList[i].IsComplete}");
+				Console.WriteLine();
+			}
 			Console.ReadLine();
 		}
 	}
